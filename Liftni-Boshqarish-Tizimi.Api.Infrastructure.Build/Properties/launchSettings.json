@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Liftni-Boshqarish-Tizimi.Api.Infrastructure.Build": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

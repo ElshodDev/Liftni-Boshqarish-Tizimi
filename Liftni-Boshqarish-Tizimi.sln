@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liftni-Boshqarish-Tizimi.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liftni-Boshqarish-Tizimi.Api.Tests.Unit", "Liftni-Boshqarish-Tizimi.Api.Tests.Unit\Liftni-Boshqarish-Tizimi.Api.Tests.Unit.csproj", "{2CAB72F9-2D1B-4570-9FEC-90F6CD24FE40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liftni-Boshqarish-Tizimi.Api.Infrastructure.Build", "Liftni-Boshqarish-Tizimi.Api.Infrastructure.Build\Liftni-Boshqarish-Tizimi.Api.Infrastructure.Build.csproj", "{16AAC512-5C65-45FD-B349-73DF7D7FAC3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2CAB72F9-2D1B-4570-9FEC-90F6CD24FE40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CAB72F9-2D1B-4570-9FEC-90F6CD24FE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CAB72F9-2D1B-4570-9FEC-90F6CD24FE40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16AAC512-5C65-45FD-B349-73DF7D7FAC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16AAC512-5C65-45FD-B349-73DF7D7FAC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16AAC512-5C65-45FD-B349-73DF7D7FAC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16AAC512-5C65-45FD-B349-73DF7D7FAC3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
