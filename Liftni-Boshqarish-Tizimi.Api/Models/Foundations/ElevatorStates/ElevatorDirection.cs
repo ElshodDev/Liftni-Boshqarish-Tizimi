@@ -4,11 +4,12 @@
 // Project: Liftni_Boshqarish_Tizimi.Api
 //===================================================
 
-namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit
+namespace Liftni_Boshqarish_Tizimi.Api.Models.Foundations.ElevatorStates
 {
-    public class DeleteMe
+    public enum ElevatorDirection
     {
-        [Fact]
-        public void ShouldbeTrue() => Assert.True(true);
+        Up,
+        Down,
+        Idle
     }
 }
