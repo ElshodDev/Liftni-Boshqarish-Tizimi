@@ -24,6 +24,7 @@ namespace Liftni_Boshqarish_Tizimi.Api
                 Version = "v1"
             };
             services.AddDbContext<StorageBroker>();
+            services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddControllers();
 
             services.AddSwaggerGen(options =>
