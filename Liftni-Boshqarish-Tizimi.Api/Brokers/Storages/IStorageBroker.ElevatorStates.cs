@@ -5,12 +5,11 @@
 //===================================================
 
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.ElevatorStates;
-using Microsoft.EntityFrameworkCore;
 
 namespace Liftni_Boshqarish_Tizimi.Api.Brokers.Storages
 {
-    public partial class StorageBroker
+    public partial interface IStorageBroker
     {
-        public DbSet<ElevatorState> ElevatorStates { get; set; }
+        ValueTask<ElevatorState> InserElevatorStateAsync(ElevatorState elevatorState);
     }
 }

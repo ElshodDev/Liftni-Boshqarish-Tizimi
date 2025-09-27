@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Liftni_Boshqarish_Tizimi.Api.Brokers.Storages
 {
-    public partial class StorageBroker : EFxceptionsContext
+    public partial class StorageBroker : EFxceptionsContext, IStorageBroker
     {
         private readonly IConfiguration configuration;
 
@@ -26,8 +26,8 @@ namespace Liftni_Boshqarish_Tizimi.Api.Brokers.Storages
             optionsBuilder.UseNpgsql(connectionString);
         }
 
-        public override void Dispose() 
-        { 
+        public override void Dispose()
+        {
             base.Dispose();
         }
     }
