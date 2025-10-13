@@ -23,11 +23,9 @@ namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorS
             ElevatorState storageElevatorState = inputElevatorState;
             ElevatorState expectedElevatorState = storageElevatorState.DeepClone();
 
-            ElevatorState wrongElevatorState = CreateRandomElevatorState();
-
             this.storageBrokerMock.Setup(broker=>
             broker.InserElevatorStateAsync(inputElevatorState))
-                .ReturnsAsync(wrongElevatorState);
+                .ReturnsAsync(storageElevatorState);
 
             //when
             ElevatorState actualElevatorState =
