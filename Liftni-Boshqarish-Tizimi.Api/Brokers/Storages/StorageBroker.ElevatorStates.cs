@@ -13,7 +13,7 @@ namespace Liftni_Boshqarish_Tizimi.Api.Brokers.Storages
     {
         public DbSet<ElevatorState> ElevatorStates { get; set; }
 
-      public   async ValueTask<ElevatorState> InserElevatorStateAsync(ElevatorState elevatorState)
+        public async ValueTask<ElevatorState> InserElevatorStateAsync(ElevatorState elevatorState)
         {
             using var broker = new StorageBroker(this.configuration);
 
