@@ -4,6 +4,7 @@
 // Project: Liftni_Boshqarish_Tizimi.Api
 //===================================================
 
+using Liftni_Boshqarish_Tizimi.Api.Brokers.Loggings;
 using Liftni_Boshqarish_Tizimi.Api.Brokers.Storages;
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.ElevatorStates;
 using Liftni_Boshqarish_Tizimi.Api.Services.Foundations.ElevatorStates;
@@ -15,14 +16,18 @@ namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorS
     public partial class ElevatorstateServiceTests
     {
         private readonly Mock<IStorageBroker> storageBrokerMock;
+        private readonly Mock<ILoggingBroker> loggingBrokerMock;
         private readonly IElevatorStateService elevatorStateService;
 
         public ElevatorstateServiceTests()
         {
             this.storageBrokerMock = new Mock<IStorageBroker>();
+            this.loggingBrokerMock = new Mock<ILoggingBroker>();
 
             this.elevatorStateService =
-                new ElevatorStateService(this.storageBrokerMock.Object);
+                new ElevatorStateService(
+              storageBroker:this.storageBrokerMock.Object,
+              loggingBroker:this.loggingBrokerMock.Object);
         }
 
         private static ElevatorState CreateRandomElevatorState() =>
