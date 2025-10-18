@@ -7,11 +7,10 @@
 using Liftni_Boshqarish_Tizimi.Api.Brokers.Loggings;
 using Liftni_Boshqarish_Tizimi.Api.Brokers.Storages;
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.ElevatorStates;
-using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.Exceptions;
 
 namespace Liftni_Boshqarish_Tizimi.Api.Services.Foundations.ElevatorStates
 {
-    public class ElevatorStateService : IElevatorStateService
+    public partial class ElevatorStateService : IElevatorStateService
     {
         private readonly IStorageBroker storageBroker;
         private readonly ILoggingBroker loggingBroker;
@@ -24,27 +23,14 @@ namespace Liftni_Boshqarish_Tizimi.Api.Services.Foundations.ElevatorStates
             this.loggingBroker=loggingBroker;
         }
 
-        public async ValueTask<ElevatorState> AddElevatorStateAsync(
-            ElevatorState elevatorState)
-        {
-            try
+        public ValueTask<ElevatorState> AddElevatorStateAsync(
+            ElevatorState elevatorState) =>
+            TryCatch(async () =>
             {
-                if (elevatorState is null)
-                {
+                ValidateElevatorStateNotNull(elevatorState);
 
-                    throw new NullElevatorStateException();
-                }
-                return await this.storageBroker.InserElevatorStateAsync(elevatorState);
-            }
-            catch (NullElevatorStateException nullElevatorStateException)
-            {
-                var elevatorStateValidationException =
-                   new ElevatorStateValidationException(nullElevatorStateException);
-
-                this.loggingBroker.LogError(elevatorStateValidationException);
-
-                throw elevatorStateValidationException;
-            }
-        }
+                return await this.storageBroker.
+                InserElevatorStateAsync(elevatorState);
+            });
     }
 }
