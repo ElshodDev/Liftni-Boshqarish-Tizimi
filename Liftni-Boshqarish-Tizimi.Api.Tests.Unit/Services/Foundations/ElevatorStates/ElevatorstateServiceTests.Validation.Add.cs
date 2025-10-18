@@ -6,7 +6,6 @@
 
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.ElevatorStates;
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.Exceptions;
-using Xunit.Abstractions;
 
 namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorStates
 {
@@ -19,7 +18,7 @@ namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorS
             ElevatorState NullElevatorState = null;
             var nullElevatorStateException = new NullElevatorStateException();
 
-            var expectedElevatorStateValidationException=
+            var expectedElevatorStateValidationException =
                 new ElevatorStateValidationException(nullElevatorStateException);
 
             //when
