@@ -27,15 +27,24 @@ namespace Liftni_Boshqarish_Tizimi.Api.Services.Foundations.ElevatorStates
         public async ValueTask<ElevatorState> AddElevatorStateAsync(
             ElevatorState elevatorState)
         {
-
-            if (elevatorState is null)
+            try
             {
-                var nullElevatorStateException = new NullElevatorStateException();
+                if (elevatorState is null)
+                {
 
-                throw new ElevatorStateValidationException(nullElevatorStateException);
+                    throw new NullElevatorStateException();
+                }
+                return await this.storageBroker.InserElevatorStateAsync(elevatorState);
             }
+            catch (NullElevatorStateException nullElevatorStateException)
+            {
+                var elevatorStateValidationException =
+                   new ElevatorStateValidationException(nullElevatorStateException);
 
-            return await this.storageBroker.InserElevatorStateAsync(elevatorState);
+                this.loggingBroker.LogError(elevatorStateValidationException);
+
+                throw elevatorStateValidationException;
+            }
         }
     }
 }
