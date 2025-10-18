@@ -9,7 +9,9 @@ using Liftni_Boshqarish_Tizimi.Api.Brokers.Storages;
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.ElevatorStates;
 using Liftni_Boshqarish_Tizimi.Api.Services.Foundations.ElevatorStates;
 using Moq;
+using System.Linq.Expressions;
 using Tynamix.ObjectFiller;
+using Xeptions;
 
 namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorStates
 {
@@ -26,8 +28,8 @@ namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorS
 
             this.elevatorStateService =
                 new ElevatorStateService(
-              storageBroker:this.storageBrokerMock.Object,
-              loggingBroker:this.loggingBrokerMock.Object);
+              storageBroker: this.storageBrokerMock.Object,
+              loggingBroker: this.loggingBrokerMock.Object);
         }
 
         private static ElevatorState CreateRandomElevatorState() =>
@@ -35,6 +37,14 @@ namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorS
 
         private static DateTime GetRandomDateTime() =>
            new DateTimeRange(earliestDate: new DateTime(2020, 1, 1)).GetValue();
+
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
+        {
+            return actualException =>
+                actualException.Message == expectedException.Message
+                && actualException.InnerException.Message == expectedException.InnerException.Message
+                && (actualException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
+        }
         private static Filler<ElevatorState> CreateElevatorStateFiller(DateTime date)
         {
             var filler = new Filler<ElevatorState>();

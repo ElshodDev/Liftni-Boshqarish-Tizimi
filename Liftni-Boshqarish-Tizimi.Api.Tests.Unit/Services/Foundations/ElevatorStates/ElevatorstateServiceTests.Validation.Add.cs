@@ -6,6 +6,7 @@
 
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.ElevatorStates;
 using Liftni_Boshqarish_Tizimi.Api.Models.Foundations.Exceptions;
+using Moq;
 
 namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorStates
 {
@@ -29,6 +30,18 @@ namespace Liftni_Boshqarish_Tizimi.Api.Tests.Unit.Services.Foundations.ElevatorS
             //then
             await Assert.ThrowsAsync<ElevatorStateValidationException>(() =>
           addElevatorState.AsTask());
+
+            this.loggingBrokerMock.Verify(broker =>
+            broker.LogError(It.Is(SameExceptionAs(
+                expectedElevatorStateValidationException))),
+                Times.Once);
+
+            this.storageBrokerMock.Verify(broker =>
+            broker.InserElevatorStateAsync(It.IsAny<ElevatorState>()),
+            Times.Never);
+
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+            this.storageBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
