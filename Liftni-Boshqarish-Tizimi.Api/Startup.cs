@@ -4,6 +4,7 @@
 // Project: Liftni_Boshqarish_Tizimi.Api
 //===================================================
 
+using Liftni_Boshqarish_Tizimi.Api.Brokers.Loggings;
 using Liftni_Boshqarish_Tizimi.Api.Brokers.Storages;
 using Microsoft.OpenApi.Models;
 
@@ -23,9 +24,9 @@ namespace Liftni_Boshqarish_Tizimi.Api
                 Title = "ElevatorService.Api",
                 Version = "v1"
             };
-            services.AddDbContext<StorageBroker>();
-            services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddControllers();
+            services.AddDbContext<StorageBroker>();
+            AddBrokers(services);
 
             services.AddSwaggerGen(options =>
             {
@@ -56,6 +57,11 @@ namespace Liftni_Boshqarish_Tizimi.Api
 
             app.UseEndpoints(endpoints =>
                 endpoints.MapControllers());
+        }
+        private static void AddBrokers(IServiceCollection services)
+        {
+            services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
         }
     }
 }
